@@ -18,6 +18,6 @@ No database apontado pelo datasource aplicar o sql previsao.sql.
 
 A index.html efeuta a consulta no seguinte endereço: 
 
-<b>http://localhost:8090/PrevisaoTempo/api/previsao<\b>
+<b>http://localhost:8090/PrevisaoTempo/api/previsao</b>
 
 Caso utilizar porta diferente alterar no arquivo api.js a variável vUrlAPI.
