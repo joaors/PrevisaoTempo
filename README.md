@@ -1,5 +1,11 @@
 # PrevisaoTempo
 
+Obs: Classe PrevisaoResource linha 40 alterada as 14:00 hrs do dia 23/062015:
+de - Erro erro = Erro.create("Erro Inesperado", e.getMessage());
+para - Erro erro = Erro.create("Erro Inesperado", e.getCause().getMessage());
+
+Motivo: Exceção vem encapsulada e para melhor exibição para o usuário melhor desencapsular e enviar a message correta. 
+
 Projeto de consulta da previsão do tempo
 
 Projeto que consome os dados de tempo do wsdl http://www.webservicex.net/globalweather.asmx?WSDL.
