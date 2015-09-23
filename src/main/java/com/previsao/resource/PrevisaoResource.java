@@ -37,7 +37,7 @@ public class PrevisaoResource {
 	                .entity(previsao)
 	                .build();
 		} catch (Exception e) {
-			Erro erro = Erro.create("Erro Inesperado", e.getMessage());
+			Erro erro = Erro.create("Erro Inesperado", e.getCause().getMessage());
 	        return Response
 	                .status(Response.Status.INTERNAL_SERVER_ERROR)
 	                .entity(erro)
