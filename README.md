@@ -21,3 +21,14 @@ A index.html efeuta a consulta no seguinte endereço:
 <b>http://localhost:8090/PrevisaoTempo/api/previsao</b>
 
 Caso utilizar porta diferente alterar no arquivo api.js a variável vUrlAPI.
+
+Endereços para consulta dos dados via JSON.
+
+<b>para consultar uma previsao especifica já registrada no sistem</b>
+http://servidor:porta/PrevisaoTempo/api/previsao/{id}
+
+<b>para consultar todas as previsões já registradas no sistema</b>
+http://servidor:porta/PrevisaoTempo/api/previsao/all
+
+<b>para consultar a previsão atual</b>
+http://servidor:porta/PrevisaoTempo/api/previsao
