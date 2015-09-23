@@ -25,7 +25,6 @@ Caso utilizar porta diferente alterar no arquivo api.js a variável vUrlAPI.
 Endereços para consulta dos dados via JSON.
 
 <b>para consultar uma previsao especifica já registrada no sistema</b>
-
 http://servidor:porta/PrevisaoTempo/api/previsao/{id}
 
 <b>para consultar todas as previsões já registradas no sistema</b>
