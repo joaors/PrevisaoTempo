@@ -1,0 +1,13 @@
+@CHARSET "ISO-8859-1";
+
+.col-md-2 {
+	font-weight: bold !important;
+}
+
+.btn {
+	margin-top: 20px;
+}
+
+#dados {
+	margin-top: 20px;
+}
