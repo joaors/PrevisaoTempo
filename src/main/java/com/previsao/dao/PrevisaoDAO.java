@@ -20,13 +20,12 @@ public class PrevisaoDAO {
 	}
 	
 	public Previsao find(Integer id) {
-		return em.find(Previsao.class, id);
-		
+		return em.find(Previsao.class, id);		
 	}
 	
 	public List<Previsao> findAll() {
 		return em.createQuery("SELECT p FROM Previsao p", Previsao.class)
-					.getResultList();
+					.getResultList();		
 	}
 
 }

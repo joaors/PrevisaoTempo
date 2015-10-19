@@ -2,11 +2,10 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.previsao</groupId>
   <artifactId>PrevisaoTempo</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.1</version>
   <packaging>war</packaging>
-  
-  <name>PrevisaoTempo</name>
   <description>Previsao Tempo</description>
+  <name>PrevisaoTempo</name>
   <dependencies>
         <dependency>
             <groupId>javax</groupId>
@@ -21,4 +20,7 @@
             <version>7.0</version>
         </dependency>
     </dependencies>
+    <build>
+		<finalName>ListaTelefonica</finalName>    
+    </build>
 </project>
