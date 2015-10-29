@@ -2,16 +2,20 @@ package com.previsao.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Objects;
 
 import javax.ejb.Stateless;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.namespace.QName;
+import javax.xml.ws.BindingProvider;
+import javax.xml.ws.Service;
 
-import com.previsao.ws.net.webservicex.GlobalWeather;
 import com.previsao.ws.net.webservicex.GlobalWeatherSoap;
 import com.previsao.xmlClass.CurrentWeather;
+
 
 @Stateless
 public class BuscaPrevisao {
@@ -21,8 +25,34 @@ public class BuscaPrevisao {
 
 	public CurrentWeather buscar() throws Exception {
 		try {
+			   URL wsdlURL = new URL("http://www.webservicex.net/globalweather.asmx?wsdl");
+			   QName serviceName = new QName("http://www.webserviceX.NET", "GlobalWeather");
+			   Service service = Service.create(wsdlURL, serviceName);
+			   GlobalWeatherSoap port = service.getPort(GlobalWeatherSoap.class);
+				//Set timeout until a connection is established
+			   ((BindingProvider) port).getRequestContext().put("javax.xml.ws.client.connectionTimeout", "15000");
+
+				//Set timeout until the response is received
+			   ((BindingProvider) port).getRequestContext().put("javax.xml.ws.client.receiveTimeout", "15000");			
+				
+				String cities = port.getCitiesByCountry(COUNTRY);
+				if (!cities.contains(CITY)) {
+					throw new Exception("Cidade não encontrada");
+				}
+				String previsao = getStringPrevisao(cities, port);
+				saveFile(previsao);
+				CurrentWeather c = unmarshalFilePrevisao(previsao);			
+			
+			
+			/*
 			GlobalWeather service = new GlobalWeather();
 			GlobalWeatherSoap port = service.getGlobalWeatherSoap();
+			//Set timeout until a connection is established
+			//((BindingProvider)service).getRequestContext().put("javax.xml.ws.client.connectionTimeout", "1000");
+
+			//Set timeout until the response is received
+			//((BindingProvider) service).getRequestContext().put("javax.xml.ws.client.receiveTimeout", "1000");			
+			
 			String cities = port.getCitiesByCountry(COUNTRY);
 			if (!cities.contains(CITY)) {
 				throw new Exception("Cidade não encontrada");
@@ -30,8 +60,9 @@ public class BuscaPrevisao {
 			String previsao = getStringPrevisao(cities, port);
 			saveFile(previsao);
 			CurrentWeather c = unmarshalFilePrevisao(previsao);
+			*/
 			return c;			
-		} catch (javax.xml.ws.soap.SOAPFaultException e) {
+		} catch (javax.xml.ws.WebServiceException e) {
 			throw new Error("Servidor de previsão não respondendo, tente novamente mais tarde.", e);
 		}
 	}
